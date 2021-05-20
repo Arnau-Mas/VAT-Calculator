@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculador IVA</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="header__h1">Calculador de IVA</h1>
+    </header>
+    <article class="article">
+        <div class="article__div">
+            <label for="priceId" class="article__label">Introduce un precio <input type="number" id="priceId" class="article__input"></label>
+            <label for="selectId" class="article__label" id="selectlabelId">Selecciona un producto 
+                <select name="" id="selectId" class="article__select">
+                    <option selected value="0">PRODUCTOS</option>
+                    <optgroup id="groupId" label="Alimentos">
+                        <option id="optionId">Pan</option>
+                        <option id="optionId">Leche</option>
+                        <option id="optionId">Fruta</option>
+                        <option id="optionId">Verdura</option>
+                        <option id="optionId">Huevos</option>
+                        <option id="optionId">Queso</option>
+                    </optgroup>
+                    <optgroup id="optionId" label="Servicios">
+                        <option id="optionId">Transporte</option>
+                        <option id="optionId">Hosteleria</option>
+                        <option id="optionId">Optica</option>
+                    </optgroup>
+                    <optgroup id="groupId" label="Ocio">
+                        <option id="optionId">Cine</option>
+                        <option id="optionId">Teatro</option>
+                        <option id="optionId">Otros productos</option>
+                    </optgroup>  
+                </select> 
+            </label>
+            <input type="button" value="Calcular" class="calcular" onclick="onClickIva()">
+        </div>
+        <div class="article__div2">
+            <h3 id="nameProductId">PRODUCTO</h3>
+            <p>Tipo: <span id="tipoId"></span></p>
+            <p>Porcentaje: <span id="porcentajeId"></span></p>
+            <p>Valor del IVA: <span id="valorIvaId"></span></p>
+        </div>
+    </article>
+
+    <script>
+        function onClickIva(){
+            let product=document.getElementById("selectId").value;
+            let price=document.getElementById("priceId").value;
+            console.log(product);
+            switch(product){
+                case "Pan":
+                case "Leche":
+                case "Fruta":
+                case "Verdura":
+                case "Huevos":
+                case "Queso":
+                    console.log("case aliments");
+                    document.getElementById("nameProductId").innerHTML=product;
+                    document.getElementById("tipoId").innerHTML="Superreducido";
+                    document.getElementById("porcentajeId").innerHTML="4%";
+                    document.getElementById("valorIvaId").innerHTML=price*4/100+"€";
+                    break;
+                case "Transporte":
+                case "Hosteleria":
+                case "Optica":
+                console.log("case serveis");
+                    document.getElementById("nameProductId").innerHTML=product;
+                    document.getElementById("tipoId").innerHTML="Reducido";
+                    document.getElementById("porcentajeId").innerHTML="10%";
+                    document.getElementById("valorIvaId").innerHTML=price*10/100+"€";
+                    break;
+                case "Cine":
+                case "Teatro":
+                case "Otros productos":
+                document.getElementById("nameProductId").innerHTML=product;
+                    document.getElementById("tipoId").innerHTML="General";
+                    document.getElementById("porcentajeId").innerHTML="21%";
+                    document.getElementById("valorIvaId").innerHTML=price*21/100+"€";
+                    break;
+                }
+            
+        }
+    </script>
+</body>
+</html>
